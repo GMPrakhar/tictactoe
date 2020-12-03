@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 #include "arena.hpp"
 #include "display.hpp"
@@ -8,6 +9,8 @@
 
 int main()
 {
+    srand (time (NULL)); //  to use the seed once to get all the results from a rand in compMove()
+    
     int r, c, mc = 0;
     while (true)
     {
@@ -20,7 +23,7 @@ int main()
         if (arena[r - 1][c - 1] != 0 || r > 3 || c > 3 || r <= 0 || c <= 0)
         {
             std::cout << "Invalid input!!" << std::endl << std::endl;
-           continue;
+            continue;
         }
         mc++;
         arena[r - 1][c - 1] = 1;

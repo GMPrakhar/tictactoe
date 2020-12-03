@@ -5,15 +5,29 @@
 
 void compMove()
 {
-    int r, c;
-    while (true)
+    int row, col;
+    
+    // comp is trying first get middle field
+    // because that way is more chance to win
+    
+    if (arena[1][1] == 0)
     {
-        r = rand() % 3;
-        c = rand() % 3;
-        if (arena[r][c] == 0)
-        {
-           break;
-        }
+        arena[1][1] = 2;
     }
-    arena [r][c] = 2;
+    
+    // if in the middle fild already checked by player, then:
+    
+    else
+    {
+        while (true)
+        {
+            row = rand() % 3;
+            col = rand() % 3;
+            if (arena[row][col] == 0)
+            {
+               break;
+            }
+        }
+        arena [row][col] = 2;
+    }
 }
