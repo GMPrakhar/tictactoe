@@ -11,36 +11,54 @@ int main()
 {
     srand (time (NULL)); //  to use the seed once to get all the results from a rand in compMove()
     
-    int r, c, mc = 0;
+    int row, col, mc = 0;
+    
     while (true)
     {
         display();
         std::cout << "row : ";
-        std::cin >> r;
+        std::cin >> row;
         std::cout << "column : ";
-        std::cin >> c;
+        std::cin >> col;
         
-        if (arena[r - 1][c - 1] != 0 || r > 3 || c > 3 || r <= 0 || c <= 0)
+        if (arena[row - 1][col - 1] != 0 || row > 3 || col > 3 || row <= 0 || col <= 0)
         {
             std::cout << "Invalid input!!" << std::endl << std::endl;
             continue;
         }
         mc++;
-        arena[r - 1][c - 1] = 1;
-        if (mc < 9) compMove();
+        
+        arena[row - 1][col - 1] = 1;
+        
+        if (mc < 9)
+        {
+            compMove();
+        }
+        
         int w = checkWin();
+        
+        // condition for wining
         if (w > 0)
         {
             display();
-            std::cout << "You Win!!" << std::endl;
+            std::cout << "You Win!!" << std::endl << std::endl;
             break;
         }
-        else if (w < 0)
+        
+        // condition for losing
+        if (w < 0)
         {
             display();
-            std::cout << "You Lose!!" << std::endl;
+            std::cout << "You Lose!!" << std::endl << std::endl;
             break;
         }
         mc++;
+        
+        // condition for draw
+        if (mc > 9)
+        {
+            std::cout << "Draw!!" << std::endl << std::endl;
+            break;
+        }
     }
 }
